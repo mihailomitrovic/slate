@@ -1,245 +1,556 @@
 ---
-title: API Reference
+title: API rute
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - Postman
 
 includes:
   - errors
 
-search: true
-
-code_clipboard: true
-
 meta:
-  - name: description
-    content: Documentation for the Kittn API
+  - name: opis
+    content: Dokumentacija za Films API
 ---
 
-# Introduction
+# Korisnici
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Vrati korisnike
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```Postman
+GET http://example.com/api/users
 ```
 
-```python
-import kittn
+> Naredba vraća podatke u JSON formatu:
 
-api = kittn.authorize('meowmeowmeow')
+```json
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Mihailo",
+            "email": "mihailo@gmail.com"
+        },
+        {
+            "id": 2,
+            "name": "Marko",
+            "email": "marko@gmail.com"
+        }
+    ]
+}
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+Ovaj endpoint vraća sve korisnike. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/users`
+
+## Registracija
+
+```Postman
+POST http://example.com/api/register
 ```
 
-```javascript
-const kittn = require('kittn');
+> Naredba vraća podatke u JSON formatu:
 
-let api = kittn.authorize('meowmeowmeow');
+```json
+{
+    "data": {
+        "name": "Milan",
+        "email": "milan@gmail.com",
+        "updated_at": "2022-12-16T10:48:12.000000Z",
+        "created_at": "2022-12-16T10:48:12.000000Z",
+        "id": 3
+    },
+    "access_token": "3|lnn9nDz0nOk8lsPGFWbLogyPzviFHWOpKGc2F1cB",
+    "token_type": "Bearer"
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Ovaj endpoint registruje korisnika. Svi imaju pristup.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+### HTTP zahtev
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+`POST http://example.com/api/register`
 
-`Authorization: meowmeowmeow`
+## Prijava
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```Postman
+POST http://example.com/api/login
 ```
 
-```python
-import kittn
+> Naredba vraća podatke u JSON formatu:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```json
+{
+    "message": "Milan, welcome!",
+    "access_token": "4|SDsSh4T6nXsM4tP4xwM5jr8PP16Nii82xt2UXY98",
+    "token_type": "Bearer"
+}
 ```
 
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+Ovaj endpoint prijavljuje korisnika. Svi imaju pristup.
+
+### HTTP zahtev
+
+`POST http://example.com/api/login`
+
+## Profil
+
+```Postman
+GET http://example.com/api/profile
 ```
 
-```javascript
-const kittn = require('kittn');
+> Naredba vraća podatke u JSON formatu:
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```json
+{
+    "id": 5,
+    "name": "Milan",
+    "email": "milan@gmail.com",
+    "email_verified_at": null,
+    "created_at": "2022-12-16T10:48:12.000000Z",
+    "updated_at": "2022-12-16T10:48:12.000000Z"
+}
 ```
 
-> The above command returns JSON structured like this:
+Ovaj endpoint prikazuje profil prijavljenog korisnika. Samo autentifikovani korisnik ima pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/profile`
+
+## Odjava
+
+```Postman
+POST http://example.com/api/logout
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "message": "You have successfully logged out and the token has beem successfully deleted."
+}
+```
+
+Ovaj endpoint odjavljuje korisnika. Samo autentifikovani korisnici imaju pristup.
+
+### HTTP zahtev
+
+`POST http://example.com/api/logout`
+
+# Režiseri
+
+## Vrati režisere
+
+```Postman
+GET http://example.com/api/directors
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "directors": [
+        {
+            "id": 1,
+            "first_name": "James",
+            "last_name": "Cameron",
+            "user": 2
+        },
+        {
+            "id": 2,
+            "first_name": "Ruben",
+            "last_name": "Östlund",
+            "user": 3
+        }
+    ]
+}
+```
+
+Ovaj endpoint vraća sve režisere. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/directors`
+
+## Vrati režisera
+
+```Postman
+GET http://example.com/api/directors/2
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "director": {
+        "id": 2,
+        "first_name": "Ruben",
+        "last_name": "Östlund",
+        "user": 2
+    }
+}
+```
+
+Ovaj endpoint vraća konkretnog režisera. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/directors/<ID>`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID režisera koji treba da se vrati
+
+
+## Sačuvaj režisera
+
+```Postman
+POST http://example.com/api/directors
+```
+
+> Naredba vraća podatke u JSON formatu:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    "The director has been added successfully.",
+    {
+        "id": 3,
+        "first_name": "Patty",
+        "last_name": "Jenkins",
+        "user": 1
+    }
 ]
 ```
 
-This endpoint retrieves all kittens.
+Ovaj endpoint čuva konkretnog režisera. Samo autentifikovani korisnici imaju pristup.
 
-### HTTP Request
+### HTTP zahtev
 
-`GET http://example.com/api/kittens`
+`POST http://example.com/api/directors`
 
-### Query Parameters
+## Ažuriraj režisera
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```Postman
+PUT http://example.com/api/directors/3
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Naredba vraća podatke u JSON formatu:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+    "The director has been updated successfully.",
+    {
+        "id": 3,
+        "first_name": "James",
+        "last_name": "Gunn",
+        "user": 1
+    }
+]
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Ovaj endpoint ažurira konkretnog režisera. Samo autentifikovani korisnici imaju pristup.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`PUT http://example.com/api/directors/<ID>`
 
 ### URL Parameters
 
-Parameter | Description
+Parametar | Opis
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | ID režisera koji treba da se ažurira
 
-## Delete a Specific Kitten
+## Obriši režisera
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```Postman
+DELETE http://example.com/api/directors/3
 ```
 
-```python
-import kittn
+> Naredba vraća podatke u JSON formatu:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+```json
+[
+    "The director has been deleted successfully."
+]
 ```
 
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+Ovaj endpoint briše konkretnog režisera. Samo autentifikovani korisnici imaju pristup.
+
+### HTTP zahtev
+
+`DELETE http://example.com/api/directors/<ID>`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID režisera koji treba da se obriše
+
+# Filmovi
+
+## Vrati filmove
+
+```Postman
+GET http://example.com/api/films
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Naredba vraća podatke u JSON formatu:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "films": [
+        {
+            "id": 1,
+            "year": "2022",
+            "title": "Avatar: The Way of Water",
+            "tagline": "Return to Pandora",
+            "synopsis": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
+            "genre": 1,
+            "director": 1,
+            "user": 1
+        },
+        {
+            "id": 2,
+            "year": "2022",
+            "title": "The Triangle of Sadness",
+            "tagline": "Sans filtre",
+            "synopsis": "A celebrity model couple are invited on a luxury cruise for the uber-rich, helmed by an unhinged captain. What first appeared Instagrammable ends catastrophically, leaving the survivors stranded on a desert island and fighting for survival."
+            "genre": 2,
+            "director": 2,
+            "user": 1
+        },
+        {
+            "id": 3,
+            "year": "2017",
+            "title": "The Square",
+            "tagline": "The Square is a sanctuary of trust and caring",
+            "synopsis": "A prestigious Stockholm museum's chief art curator finds himself in times of both professional and personal crisis as he attempts to set up a controversial new exhibit.",
+            "genre": 2,
+            "director": 2,
+            "user": 1
+        }
+    ]
 }
 ```
 
-This endpoint deletes a specific kitten.
+Ovaj endpoint vraća sve filmove. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/films`
+
+## Vrati film
+
+```Postman
+GET http://example.com/api/films/2
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "film": {
+        "id": 2,
+        "year": "2022",
+        "title": "The Triangle of Sadness",
+        "tagline": "Sans filtre",
+        "synopsis": "A celebrity model couple are invited on a luxury cruise for the uber-rich, helmed by an unhinged captain. What first appeared Instagrammable ends catastrophically, leaving the survivors stranded on a desert island and fighting for survival."
+        "genre": 2,
+        "director": 2,
+        "user": 1
+    }
+}
+```
+
+Ovaj endpoint vraća konkretan film. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/films/<ID>`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID filma koji treba da se vrati
+
+## Vrati filmove režisera
+
+```Postman
+GET http://example.com/api/directors/2/films
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "films": [
+        {
+            "id": 2,
+            "year": "2022",
+            "title": "The Triangle of Sadness",
+            "tagline": "Sans filtre",
+            "synopsis": "A celebrity model couple are invited on a luxury cruise for the uber-rich, helmed by an unhinged captain. What first appeared Instagrammable ends catastrophically, leaving the survivors stranded on a desert island and fighting for survival."
+            "genre": 2,
+            "director": 2,
+            "user": 1
+        },
+        {
+            "id": 3,
+            "year": "2017",
+            "title": "The Square",
+            "tagline": "The Square is a sanctuary of trust and caring",
+            "synopsis": "A prestigious Stockholm museum's chief art curator finds himself in times of both professional and personal crisis as he attempts to set up a controversial new exhibit.",
+            "genre": 2,
+            "director": 2,
+            "user": 1
+        }
+    ]
+}
+```
+
+Ovaj endpoint vraća sve filmove konkretnog režisera. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/directors/<ID>/films`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID režisera čiji filmovi treba da se vrate
+
+## Vrati filmove žanra
+
+```Postman
+GET http://example.com/api/genres/1/films
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "films": [
+        {
+            "id": 1,
+            "year": "2022",
+            "title": "Avatar: The Way of Water",
+            "tagline": "Return to Pandora",
+            "synopsis": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
+            "genre": 1,
+            "director": 1,
+            "user": 1
+        }
+    ]
+}
+```
+
+Ovaj endpoint vraća sve filmove konkretnog žanra. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/genres/<ID>/films`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID žanra čiji filmovi treba da se vrate
+
+## Sačuvaj film
+
+```Postman
+POST http://example.com/api/films
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+[
+    "The film has been added successfully.",
+    {
+        "id": 1,
+        "year": "2014",
+        "title": "The Tourist",
+        "tagline": "The consequences in the fear and flight situation",
+        "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+        "genre": 2,
+        "director": 2,
+        "user": 2
+    }
+]
+```
+
+Ovaj endpoint čuva konkretan film. Samo autentifikovani korisnici imaju pristup.
+
+### HTTP zahtev
+
+`POST http://example.com/api/films`
+
+## Ažuriraj film
+
+```Postman
+PUT http://example.com/api/films/4
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+[
+    "The film has been updated successfully.",
+    {
+        "id": 1,
+        "year": "2014",
+        "title": "Force Majeure",
+        "tagline": "The consequences in the fear and flight situation",
+        "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+        "genre": 2,
+        "director": 2,
+        "user": 2
+    }
+]
+```
+
+Ovaj endpoint ažurira konkretan film. Samo autentifikovani korisnici imaju pristup.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`PUT http://example.com/api/films/<ID>`
 
 ### URL Parameters
 
-Parameter | Description
+Parametar | Opis
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | ID filma koji treba da se ažurira
 
+## Obriši film
+
+```Postman
+DELETE http://example.com/api/films/4
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+[
+    "The film has been deleted successfully."
+]
+```
+
+Ovaj endpoint briše konkretan film. Samo autentifikovani korisnici imaju pristup.
+
+### HTTP zahtev
+
+`DELETE http://example.com/api/films/<ID>`
+
+### URL parametri
+
+Parametar | Opis
+--------- | -----------
+ID | ID filma koji treba da se obriše
