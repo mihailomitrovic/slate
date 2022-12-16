@@ -140,6 +140,41 @@ Ovaj endpoint odjavljuje korisnika. Samo autentifikovani korisnici imaju pristup
 
 `POST http://example.com/api/logout`
 
+# Žanrovi
+
+## Vrati žanrove
+
+```Postman
+GET http://example.com/api/genres
+```
+
+> Naredba vraća podatke u JSON formatu:
+
+```json
+{
+    "genres": [
+        {
+            "id": 1,
+            "name": "Adventure"
+        },
+        {
+            "id": 2,
+            "name": "Drama"
+        },
+        {
+            "id": 3,
+            "name": "Horror"
+        }
+    ]
+}
+```
+
+Ovaj endpoint vraća sve žanrove. Svi imaju pristup.
+
+### HTTP zahtev
+
+`GET http://example.com/api/genres`
+
 # Režiseri
 
 ## Vrati režisere
