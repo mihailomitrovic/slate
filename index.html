@@ -411,6 +411,14 @@
 <h3 id='http-zahtev'>HTTP zahtev</h3>
 <p><code>GET http://example.com/api/users</code></p>
 <h2 id='registracija'>Registracija</h2><div class="highlight"><pre class="highlight plaintext"><code>POST http://example.com/api/register
+
+
+Body:
+{
+    "name": "Milan",
+    "email": "milan@gmail.com",
+    "password": "mojasifra"
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
@@ -431,6 +439,12 @@
 <h3 id='http-zahtev-2'>HTTP zahtev</h3>
 <p><code>POST http://example.com/api/register</code></p>
 <h2 id='prijava'>Prijava</h2><div class="highlight"><pre class="highlight plaintext"><code>POST http://example.com/api/login
+
+Body:
+{
+    "email": "milan@gmail.com",
+    "password": "mojasifra"
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
@@ -553,6 +567,13 @@
 </tr>
 </tbody></table>
 <h2 id='sacuvaj-rezisera'>Sačuvaj režisera</h2><div class="highlight"><pre class="highlight plaintext"><code>POST http://example.com/api/directors
+
+Body:
+{
+    "first_name": "Patty",
+    "last_name": "Jenkins",
+    "slug": "pattyjenkins"
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
@@ -571,6 +592,13 @@
 <h3 id='http-zahtev-9'>HTTP zahtev</h3>
 <p><code>POST http://example.com/api/directors</code></p>
 <h2 id='azuriraj-rezisera'>Ažuriraj režisera</h2><div class="highlight"><pre class="highlight plaintext"><code>PUT http://example.com/api/directors/3
+
+Body:
+{
+    "first_name": "James",
+    "last_name": "Gunn",
+    "slug": "jamesgunn"
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
@@ -781,6 +809,17 @@
 </tr>
 </tbody></table>
 <h2 id='sacuvaj-film'>Sačuvaj film</h2><div class="highlight"><pre class="highlight plaintext"><code>POST http://example.com/api/films
+
+Body:
+{
+    "title": "The Tourist",
+    "year": "2014",
+    "slug": "thetourist"
+    "tagline": "The consequences in the fear and flight situation",
+    "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+    "genre": 2,
+    "director": 2
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
@@ -803,6 +842,17 @@
 <h3 id='http-zahtev-15'>HTTP zahtev</h3>
 <p><code>POST http://example.com/api/films</code></p>
 <h2 id='azuriraj-film'>Ažuriraj film</h2><div class="highlight"><pre class="highlight plaintext"><code>PUT http://example.com/api/films/4
+
+Body:
+{
+    "title": "Force Majeure",
+    "year": "2014",
+    "slug": "forcemajeure"
+    "tagline": "The consequences in the fear and flight situation",
+    "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+    "genre": 2,
+    "director": 2
+}
 </code></pre></div>
 <blockquote>
 <p>Naredba vraća podatke u JSON formatu:</p>
