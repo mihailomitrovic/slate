@@ -49,6 +49,14 @@ Ovaj endpoint vraća sve korisnike. Svi imaju pristup.
 
 ```Postman
 POST http://example.com/api/register
+
+
+Body:
+{
+    "name": "Milan",
+    "email": "milan@gmail.com",
+    "password": "mojasifra"
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
@@ -77,6 +85,12 @@ Ovaj endpoint registruje korisnika. Svi imaju pristup.
 
 ```Postman
 POST http://example.com/api/login
+
+Body:
+{
+    "email": "milan@gmail.com",
+    "password": "mojasifra"
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
@@ -246,6 +260,13 @@ ID | ID režisera koji treba da se vrati
 
 ```Postman
 POST http://example.com/api/directors
+
+Body:
+{
+    "first_name": "Patty",
+    "last_name": "Jenkins",
+    "slug": "pattyjenkins"
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
@@ -272,6 +293,13 @@ Ovaj endpoint čuva konkretnog režisera. Samo autentifikovani korisnici imaju p
 
 ```Postman
 PUT http://example.com/api/directors/3
+
+Body:
+{
+    "first_name": "James",
+    "last_name": "Gunn",
+    "slug": "jamesgunn"
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
@@ -502,6 +530,17 @@ ID | ID žanra čiji filmovi treba da se vrate
 
 ```Postman
 POST http://example.com/api/films
+
+Body:
+{
+    "title": "The Tourist",
+    "year": "2014",
+    "slug": "thetourist"
+    "tagline": "The consequences in the fear and flight situation",
+    "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+    "genre": 2,
+    "director": 2
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
@@ -532,6 +571,17 @@ Ovaj endpoint čuva konkretan film. Samo autentifikovani korisnici imaju pristup
 
 ```Postman
 PUT http://example.com/api/films/4
+
+Body:
+{
+    "title": "Force Majeure",
+    "year": "2014",
+    "slug": "forcemajeure"
+    "tagline": "The consequences in the fear and flight situation",
+    "synopsis": "While holidaying in the French Alps, a Swedish family deals with acts of cowardliness as an avalanche breaks out.",
+    "genre": 2,
+    "director": 2
+}
 ```
 
 > Naredba vraća podatke u JSON formatu:
